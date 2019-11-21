@@ -3,8 +3,8 @@
 ```sql
 CREATE TABLE `A0` (
 	`Id`	     INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-	`Item1`	   CHAR DEFAULT (strftime('%d - %m - %Y %H:%M:%S ','now','localtime')),
-	`Field3`	 TEXT DEFAULT (strftime('%s-%W','now','localtime'))
+	`Datanow`    CHAR DEFAULT (strftime('%d - %m - %Y %H:%M:%S ','now','localtime')),
+	`Seconds`    TEXT DEFAULT (strftime('%s-%W','now','localtime'))
 );
 ```
 
@@ -30,7 +30,7 @@ All five date and time functions take a time string as an argument. The time str
 The date and time functions use a subset of [IS0\-8601](http://en.wikipedia.org/wiki/ISO_8601) date and time formats. The date() function returns the date in this format: YYYY\-MM\-DD. The time() function returns the time as HH:MM:SS. The datetime() function returns "YYYY\-MM\-DD HH:MM:SS". The julianday() function returns the [Julian day](http://en.wikipedia.org/wiki/Julian_day) \- the number of days since noon in Greenwich on November 24, 4714 B.C. ( [Proleptic Gregorian calendar](http://en.wikipedia.org/wiki/Proleptic_Gregorian_calendar)). The strftime() routine returns the date formatted according to the format string specified as the first argument. The format string supports the most common substitutions found in the [strftime() function](http://opengroup.org/onlinepubs/007908799/xsh/strftime.html) from the standard C library plus two new substitutions, %f and %J. The following is a complete list of valid strftime() substitutions:
 
 
-| Format | Description |
+| **Format**   | **Equivalent strftime()** |
 | --- | ----- |
 | %d |   day of month: 00 |
 | %f |   fractional seconds: SS.SSS |
@@ -48,8 +48,9 @@ The date and time functions use a subset of [IS0\-8601](http://en.wikipedia.org/
 
 Notice that all other date and time functions can be expressed in terms of strftime():
 
-> | **Function** |  | **Equivalent strftime()** |
-> | date(...) |  | strftime('%Y\-%m\-%d', ...) |
-> | time(...) |  | strftime('%H:%M:%S', ...) |
-> | datetime(...) |  | strftime('%Y\-%m\-%d %H:%M:%S', ...) |
-> | julianday(...) |  | strftime('%J', ...) |
+| **Function**   | **Equivalent strftime()** |
+| --- | ----- |
+| date(...)      | strftime('%Y\-%m\-%d', ...) |
+| time(...)      | strftime('%H:%M:%S', ...) |
+| datetime(...)  | strftime('%Y\-%m\-%d %H:%M:%S', ...) |
+| julianday(...) | strftime('%J', ...) |
