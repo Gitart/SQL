@@ -13,4 +13,5 @@ CREATE TABLE `A0` (
 =(strftime('%d - %m - %Y %H:%M:%S ','now','localtime'))
 ```
 ## Remark  
-If not set 'localtime' be no cuurent time +- 2 hourse!
+If not set 'localtime' be no cuurent time +- 2 hource!
+
