@@ -1,4 +1,5 @@
 ## Installation
+https://awesomeopensource.com/project/syndtr/goleveldb
 
 ```
 go get github.com/syndtr/goleveldb/leveldb
