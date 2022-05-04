@@ -29,3 +29,25 @@
         LEFT JOIN `categories` `c` ON ((`i`.`category_id` = `c`.`id`)))
     GROUP BY `i`.`category_id` , `i`.`product_id`
     ```
+
+
+## Agregation and relation
+```sql
+ SELECT 
+        MAX(`o`.`company_id`) AS `company_id`,
+        MAX(`o`.`create_at`) AS `creted`,
+        MAX(`o`.`company`) AS `company`,
+        MAX(`i`.`order_id`) AS `idorder`,
+        MAX(`i`.`product`) AS `product`,
+        SUM(`i`.`weight`) AS `weight`,
+        SUM(`i`.`qty`) AS `qty`
+    FROM
+        (`order_items` `i`
+        LEFT JOIN `orders` `o` ON ((`i`.`order_id` = `o`.`id`)))
+    WHERE
+        (`o`.`typeget` IN (3 , 4))
+    GROUP BY `o`.`company_id` , `i`.`product_id` , `o`.`create_at`
+ ```
+ 
+ 
+ 
