@@ -16,13 +16,13 @@
  
 ```sql
     SELECT 
-        COUNT(0) AS `cnt`,
-        SUM(`i`.`qty`) AS `qty`,
-        SUM(`i`.`weight`) AS `weight`,
-        `c`.`title` AS `category`,
-        `i`.`category_id` AS `category_id`,
+        COUNT(0)              AS `cnt`,
+        SUM(`i`.`qty`)        AS `qty`,
+        SUM(`i`.`weight`)     AS `weight`,
+        `c`.`title`           AS `category`,
+        `i`.`category_id`     AS `category_id`,
         MAX(`i`.`product_id`) AS `product_id`,
-        MAX(`i`.`product`) AS `product`
+        MAX(`i`.`product`)    AS `product`
     FROM
         (`order_items` `i`
         LEFT JOIN `categories` `c` ON ((`i`.`category_id` = `c`.`id`)))
