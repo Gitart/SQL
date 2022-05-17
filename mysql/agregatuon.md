@@ -3,7 +3,7 @@
 ```sql
     SELECT  count(0)          cnt,
             sum(i.qty)        qty, 
-			sum(i.weight)     weight, 
+	    sum(i.weight)     weight, 
             c.title           category,
             i.category_id     category_id,
             max(i.product_id) product_id,
@@ -32,7 +32,7 @@
 ```sql
 	SELECT 
         MAX(category_id) AS `id`,
-	    MAX(category)    AS `title`,
+	MAX(category)    AS `title`,
         SUM(price)       AS `totalsum`,
         SUM(weight)      AS `weight`,
         SUM(qty)         AS `qty`,
