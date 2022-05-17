@@ -14,7 +14,7 @@
     GROUP BY i.category_id, i.product_id
  ```
  
-   ```sql
+```sql
     SELECT 
         COUNT(0) AS `cnt`,
         SUM(`i`.`qty`) AS `qty`,
@@ -27,9 +27,9 @@
         (`order_items` `i`
         LEFT JOIN `categories` `c` ON ((`i`.`category_id` = `c`.`id`)))
     GROUP BY `i`.`category_id` , `i`.`product_id`
-	```
+```
 	
-    ```sql
+```sql
 	SELECT 
         MAX(category_id) AS `id`,
 	    MAX(category)    AS `title`,
@@ -40,13 +40,13 @@
     FROM
          products
     GROUP BY category_id
-	```
+```
 ### Update 
-  ```sql
+```sql
 	UPDATE     categories ct
           LEFT JOIN category_group gr
           ON         ct.id     = gr.id
           SET        ct.weight = gr.weight,
                      ct.qty    = gr.qty
-	```				 
+```				 
 					 
