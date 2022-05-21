@@ -6,7 +6,7 @@ Tables relation between by field **Order.Id=Order_items.Order_id**
 Dession :
 
 ```sql
--- Обновление итиговых сведенией по орпдеру 
+-- Обновление итиговых сведенией по ордеру 
 UPDATE orders o
 INNER JOIN (
   SELECT max(order_id) as order_id, sum(summ) as account, sum(qty) as qty, sum(weight) as weight
