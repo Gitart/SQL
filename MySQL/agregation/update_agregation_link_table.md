@@ -7,15 +7,17 @@ Dession :
 
 ```sql
 -- Обновление итиговых сведенией по ордеру 
-UPDATE orders o
-INNER JOIN (
-  SELECT max(order_id) as order_id, sum(summ) as account, sum(qty) as qty, sum(weight) as weight
-  FROM  order_items
-  GROUP BY order_id
-) x 
-ON o.id = x.order_id
-SET o.account = x.account,
-    o.qty     = x.qty,
-    o.weight  = x.weight
- WHERE o.id = 2;
+         UPDATE orders o
+         INNER JOIN (
+         SELECT MAX(order_id) AS order_id, 
+                SUM(summ)     AS account, 
+                SUM(qty)      AS qty, 
+                SUM(weight)   AS weight
+         FROM  order_items
+         GROUP BY order_id) x 
+         ON o.id = x.order_id
+         SET o.account = x.account,
+             o.qty     = x.qty,
+             o.weight  = x.weight
+         WHERE o.id =  + id
  ```
