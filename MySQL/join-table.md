@@ -6,6 +6,7 @@ SQL
 
 Для таблиц с разными названиями полей придется делать «подгонку». В запросе данные из `table_2` добавляются `table_1`.
 
+```sql
 INSERT INTO `table_1` (`id`, `name`, `keywords`, `text`)
 SELECT
 	NULL AS `id`,
@@ -15,10 +16,11 @@ SELECT
 FROM
 
 	`table_2`
+```
 
-SQL
-Соединение полей
+## Соединение полей
 
+```sql
 INSERT INTO `table_1` (`id`, `name`, `text`)
 SELECT
 	NULL AS `id`,
@@ -28,10 +30,11 @@ FROM
 
 	`table_2`
 
-SQL
+```
 
-Соединение полей через разделитель.
+### Соединение полей через разделитель.
 
+```sql
 INSERT INTO `table_1` (`id`, `name`, `text`)
 SELECT
 	NULL AS `id`,
@@ -40,10 +43,11 @@ SELECT
 FROM
 
 	`table_2`
+```
 
-SQL
-Подзапросы из других таблиц
+### Подзапросы из других таблиц
 
+```sql
 INSERT INTO `table_1` (`id`, `name`, `text`)
 SELECT
 	NULL AS `id`,
@@ -52,11 +56,13 @@ SELECT
 FROM
 
 	`table_2`
+```
 
-SQL
-Объединение таблиц
+### Объединение таблиц
 
 LEFT JOIN
+
+```SQL
 
 INSERT INTO `table_1` (`id`, `name`, `keywords`, `text`)
 SELECT
@@ -72,9 +78,11 @@ ON
 
 	`table_2`.`id` = `table_3`.`item_id`
 
-SQL
+```
 
-UNION
+
+## UNION
+```SQL
 
 INSERT INTO `table_1` (`id`, `name`, `text`)
 (
@@ -94,3 +102,4 @@ UNION
 	FROM
 		`table_3`
 )
+```
