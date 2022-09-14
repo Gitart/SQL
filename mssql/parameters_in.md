@@ -80,3 +80,53 @@ BEGIN
     INSERT INTO Products SELECT * FROM @INFO_ARRAY
 END
 ```
+
+
+# Variant #3
+
+```sql
+-**************************************************
+-- Процедура с использованием IN параметра на входе в виде '1,2,3,12'
+--**************************************************
+CREATE FUNCTION dbo.SplitInts
+(
+   @List      VARCHAR(MAX),
+   @Delimiter VARCHAR(255)
+)
+RETURNS TABLE
+AS
+  RETURN ( SELECT Item = CONVERT(INT, Item) FROM
+      ( SELECT Item = x.i.value('(./text())[1]', 'varchar(max)')
+        FROM ( SELECT [XML] = CONVERT(XML, '<i>'
+        + REPLACE(@List, @Delimiter, '</i><i>') + '</i>').query('.')
+          ) AS a CROSS APPLY [XML].nodes('i') AS x(i) ) AS y
+      WHERE Item IS NOT NULL
+  );
+  ```
+  
+  * XP
+  ```sql
+  
+--**************************************************
+-- Использование
+-- EXEC sp_DeleteMultipleId '1,2,3,5'
+--**************************************************
+ CREATE PROCEDURE dbo.sp_DeleteMultipleId
+ @List VARCHAR(MAX)
+ AS
+ BEGIN
+      SET NOCOUNT ON;
+      SELECT * FROM v_documents WHERE CompanyID IN (SELECT Id = Item FROM dbo.SplitInts(@List, ',')); 
+ END
+ GO
+ ```
+ 
+ # Variant 4
+ ```sql
+ -- SQL 2016
+ DECLARE @EmployeeList nvarchar(500) = '[1,2,15]'
+ SELECT VALUE FROM OPENJSON(@EmployeeList )
+ ```
+ 
+ 
+ 
