@@ -128,5 +128,20 @@ AS
  SELECT VALUE FROM OPENJSON(@EmployeeList )
  ```
  
- 
+ # Variant 5
+ ```sql
+ CREATE PROCEDURE GetHotels
+    @IdList nvarchar(max)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    DECLARE @MySQL nvarchar(max)
+
+    set @MySQL = 'select * from tblHotels where ID in (' + @IdList + ')'
+    EXECUTE sp_executesql  @mysql
+
+END
+GO
+```
+
  
