@@ -40,7 +40,9 @@ CREATE TYPE id_list AS TABLE (
         FROM @customer_list;
     END;
     GO
-    
+    ```
+    #### Used 
+    ```sql
     DECLARE @customer_list id_list;
     
     INSERT INTO @customer_list (
