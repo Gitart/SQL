@@ -58,3 +58,25 @@ CREATE TYPE id_list AS TABLE (
     DROP TYPE id_list;
     GO
 ```    
+
+
+
+# Variant #2
+
+```sql
+CREATE TYPE dbo.ProductArray 
+AS TABLE
+(
+  ID INT,
+  Product NVARCHAR(50),
+  Description NVARCHAR(255)
+);
+Alter your procedure in SQL Server:
+
+ALTER PROC INSERT_SP
+@INFO_ARRAY AS dbo.ProductArray READONLY
+AS
+BEGIN
+    INSERT INTO Products SELECT * FROM @INFO_ARRAY
+END
+```
