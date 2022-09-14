@@ -147,4 +147,30 @@ END
 GO
 ```
 
+# Variant 6
+```sql
+CREATE TYPE dumyTable
+AS TABLE
+(
+  RateCodeId int,
+  RateLowerRange int,
+  RateHigherRange int,
+  RateRangeValue int
+);
+GO
+CREATE PROCEDURE spInsertRateRanges
+  @dt AS dumyTable READONLY
+AS
+BEGIN
+  SET NOCOUNT ON;
+
+  INSERT  tblRateCodeRange(RateCodeId,RateLowerRange,RateHigherRange,RateRangeValue) 
+  SELECT * 
+  FROM @dt 
+END
+```
+
+
+
+
  
